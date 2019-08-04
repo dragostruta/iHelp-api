@@ -21,12 +21,12 @@ class User
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $firstname;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $lastname;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -53,36 +53,36 @@ class User
         return $this->id;
     }
 
-    public function getFirstname(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstName(string $firstName): self
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastName(string $lastName): self
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getPhone(): ?int
     {
         return $this->phone;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhone(int $phone): self
     {
         $this->phone = $phone;
 
