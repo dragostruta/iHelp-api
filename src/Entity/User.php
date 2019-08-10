@@ -6,10 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource(
- *     collectionOperations={"get", "post"},
- *     itemOperations={"get", "put", "delete"}
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
@@ -22,24 +19,34 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
-    private $phone;
+    private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="datetime")
@@ -85,14 +92,14 @@ class User
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getPhoneNumber(): ?string
     {
-        return $this->phone;
+        return $this->phoneNumber;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
-        $this->phone = $phone;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -105,6 +112,30 @@ class User
     public function setAddress(?string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
