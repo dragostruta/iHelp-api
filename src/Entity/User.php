@@ -90,16 +90,9 @@ class User implements UserInterface
      */
     private $lastLogin;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LastLocation", mappedBy="user")
-     * @Assert\Valid()
-     */
-    private $lastLocations;
-
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable;
-        $this->lastLocations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,37 +258,6 @@ class User implements UserInterface
     public function setLastLogin(?\DateTimeInterface $lastLogin): self
     {
         $this->lastLogin = $lastLogin;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|LastLocation[]
-     */
-    public function getLastLocations(): Collection
-    {
-        return $this->lastLocations;
-    }
-
-    public function addLastLocation(LastLocation $lastLocation): self
-    {
-        if (!$this->lastLocations->contains($lastLocation)) {
-            $this->lastLocations[] = $lastLocation;
-            $lastLocation->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLastLocation(LastLocation $lastLocation): self
-    {
-        if ($this->lastLocations->contains($lastLocation)) {
-            $this->lastLocations->removeElement($lastLocation);
-            // set the owning side to null (unless already changed)
-            if ($lastLocation->getUser() === $this) {
-                $lastLocation->setUser(null);
-            }
-        }
 
         return $this;
     }
