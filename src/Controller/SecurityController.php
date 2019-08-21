@@ -5,7 +5,7 @@ namespace App\Controller;
 
 
 use ApiPlatform\Core\Api\IriConverterInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
