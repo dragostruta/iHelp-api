@@ -25,6 +25,7 @@
         "symfony/maker-bundle": "^1.12",
         "symfony/monolog-bundle": "^3.0",
         "symfony/profiler-pack": "*",
+        "symfony/test-pack": "^1.0",
         "symfony/var-dumper": "*",
         "symfony/web-server-bundle": "4.3.*"
     },

@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,7 +10,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={
+ *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
+ *          "delete" = {"access_control" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"access_control" = "is_granted('ROLE_USER')"},
+ *     },
+ *     collectionOperations={
+ *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
+ *          "post",
+ *     },
+ * )
  * @UniqueEntity(fields={"email"})
  */
 class User implements UserInterface
