@@ -7,7 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={
+ *          "delete" = {"access_control" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"access_control" = "is_granted('ROLE_ADMIN')"},
+ *     },
+ *     collectionOperations={
+ *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
+ *          "post" = {"access_control" = "is_granted('ROLE_USER')"},
+ *     },
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\LastLocationRepository")
  */
 class LastLocation
@@ -20,7 +29,7 @@ class LastLocation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lastLocations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank()
      */
