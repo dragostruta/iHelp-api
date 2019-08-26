@@ -16,6 +16,7 @@
         "symfony/framework-bundle": "4.3.*",
         "symfony/http-client": "4.3.*",
         "symfony/intl": "4.3.*",
+        "symfony/monolog-bundle": "^3.4",
         "symfony/security-bundle": "4.3.*",
         "symfony/yaml": "4.3.*"
     },
@@ -24,7 +25,6 @@
         "sensiolabs/security-checker": "^6.0",
         "symfony/debug-bundle": "*",
         "symfony/maker-bundle": "^1.12",
-        "symfony/monolog-bundle": "^3.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "^1.0",
         "symfony/var-dumper": "*",
