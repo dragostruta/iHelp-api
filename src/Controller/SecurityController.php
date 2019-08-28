@@ -5,26 +5,39 @@ namespace App\Controller;
 
 
 use ApiPlatform\Core\Api\IriConverterInterface;
+use App\Service\AuthService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use TheSeer\Tokenizer\Token;
 
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login", methods={"POST"})
+     * @var AuthService
      */
-    public function login(IriConverterInterface $iriConverter)
-    {
-        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')){
-            return $this->json([
-                'error' => 'Invalid login request: check that the Content-Type is application/json',
-            ], 400);
-        }
+    private $authService;
 
-        return new Response(null, 204, [
-            'Location' => $iriConverter->getIriFromItem($this->getUser()),
-        ]);
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
+    /**
+     * @Route("/login", name="app_login", methods={"POST"}))
+     * @param Request $request
+     * @return Response
+     */
+    public function login(Request $request){
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')){
+             $token = $this->authService->generateToken($request->get('email'));
+             return $this->json([
+                 'token' => $token
+             ],200,['Content-Type' => 'application/json']);
+        }
     }
 
     /**
