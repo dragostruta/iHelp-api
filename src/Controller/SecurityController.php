@@ -4,15 +4,12 @@
 namespace App\Controller;
 
 
-use ApiPlatform\Core\Api\IriConverterInterface;
 use App\Service\AuthService;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use TheSeer\Tokenizer\Token;
 
 class SecurityController extends AbstractController
 {
@@ -30,6 +27,7 @@ class SecurityController extends AbstractController
      * @Route("/login", name="app_login", methods={"POST"}))
      * @param Request $request
      * @return Response
+     * @throws Exception
      */
     public function login(Request $request){
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')){
@@ -42,8 +40,9 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * @throws Exception
      */
     public function logout(){
-        throw new \Exception('Should not be reached');
+        throw new Exception('Should not be reached');
     }
 }
