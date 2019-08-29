@@ -10,17 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ApiResource(
- *     itemOperations={
- *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
- *          "delete" = {"access_control" = "is_granted('ROLE_ADMIN')"},
- *          "put" = {"access_control" = "is_granted('ROLE_USER')"},
- *     },
- *     collectionOperations={
- *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
- *          "post",
- *     },
- * )
  * @UniqueEntity(fields={"email"})
  */
 class User implements UserInterface

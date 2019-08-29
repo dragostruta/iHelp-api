@@ -7,17 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource(
- *     itemOperations={
- *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
- *          "delete" = {"access_control" = "is_granted('ROLE_ADMIN')"},
- *          "put" = {"access_control" = "is_granted('ROLE_ADMIN')"},
- *     },
- *     collectionOperations={
- *          "get" = {"access_control" = "is_granted('ROLE_USER')"},
- *          "post" = {"access_control" = "is_granted('ROLE_USER')"},
- *     },
- * )
  * @ORM\Entity(repositoryClass="App\Repository\LastLocationRepository")
  */
 class LastLocation
